@@ -1,0 +1,17 @@
+h1 タスク一覧
+
+= link_to '新規タスク作成する', new_task_path, class: 'btn btn-outline-primary btn-lg mb-4'
+
+table.table.table-hover
+    thead.thead-default
+        tr
+            th= Task.human_attribute_name(:name)
+            th= Task.human_attribute_name(:created_at)
+            th
+    tbody
+        - @tasks.each do |task|
+            tr
+                td= link_to task.name, task
+                td= task.created_at
+                td= link_to '編集', edit_task_path(task), class: 'btn btn-info'
+                td= link_to '削除', task, method: :delete, class: 'btn btn-danger', data: { confirm: '削除してOK？'}
